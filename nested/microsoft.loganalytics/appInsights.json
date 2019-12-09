@@ -52,6 +52,10 @@
     
   ],
   "outputs": {
+    "key": {
+        "type": "string",
+        "value":  "[reference(resourceId('Microsoft.Insights/components', parameters('appInsightsName')), '2015-05-01').InstrumentationKey]"
+      }
     
   }
 }
