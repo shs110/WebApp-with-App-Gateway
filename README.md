@@ -53,12 +53,15 @@ Given the time constraints, I designed the architecture for a basic web applicat
 
 Given more time, I would have added the following components for higher scalibility and availibility:
 
-** Traffic Manager: The architecture can use a primary and secondary region to achieve higher availability. The application is deployed to each region. During normal operations, network traffic is routed to the primary region. If the primary region becomes unavailable, traffic is routed to the secondary region.
+**Traffic Manager: The architecture can use a primary and secondary region to achieve higher availability. The application is deployed to each region. During normal operations, network traffic is routed to the primary region. If the primary region becomes unavailable, traffic is routed to the secondary region.**
 
-** Cache: Store semi-static data in Azure Cache for Redis.
+**Cache: Store semi-static data in Azure Cache for Redis.**
 
-** CDN: Use Azure Content Delivery Network (CDN) to cache publicly available content for lower latency and faster delivery of content.
+**CDN: Use Azure Content Delivery Network (CDN) to cache publicly available content for lower latency and faster delivery of content.**
 
+**Queue: The application can queue background tasks by putting a message onto an Azure Queue storage queue. The message triggers a function app. Alternatively, you can use Service Bus queues. 
+
+**Function App. Use Function Apps to run background tasks. Functions are invoked by a trigger, such as a timer event or a message being placed on queue. For long-running stateful tasks, use Durable Functions.**
 
 <a name="overview"></a>
 # SQL Attack Overview
