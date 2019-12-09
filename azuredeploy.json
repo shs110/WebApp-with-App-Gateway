@@ -13,15 +13,12 @@
       "type": "securestring",
       "defaultValue": "",
       "metadata": {
-        "description": "this will be the sas key to access artifacts"
+        "description": "this will be the sas key to access artifacts. Leave blank if deploying from public repo"
       }
     },
     "location": {
       "type": "string",
       "allowedValues": [
-        "East US",
-        "West Europe",
-        "Southeast Asia",
         "Australia Southeast"
       ],
       "metadata": {
