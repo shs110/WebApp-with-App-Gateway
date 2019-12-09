@@ -45,9 +45,21 @@ Given the time constraints, I designed the architecture for a basic web applicat
 
 *Application Insights/Log Analytics Workspace: App Insights can effectively monitor the health and performance of your application as well as troubleshoot potential failures. Log analytics is automatically connected to the App service, database and App gateway to log and query traffic. In this case, we will run a query to detect SQL injection attacks  
 
+<a name="design decision"></a>
+# Suggested Improvements
+
+Given more time, I would have added the following components for higher scalibility and availibility:
+
+** Traffic Manager: The architecture can use a primary and secondary region to achieve higher availability. The application is deployed to each region. During normal operations, network traffic is routed to the primary region. If the primary region becomes unavailable, traffic is routed to the secondary region.
+
+** Cache: Store semi-static data in Azure Cache for Redis.
+
+** CDN. Use Azure Content Delivery Network (CDN) to cache publicly available content for lower latency and faster delivery of content.
+
+
 <a name="overview"></a>
 # SQL Attack Overview
-It showcases following use cases
+This document showcases following use cases
 1. Perform SQL injection attack on Web App with following configuration --> Application detects attack using application gateway
     * Application Gateway (WAF enabled-Detection mode)
     * SQL DB with Threat Detection disabled
