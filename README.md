@@ -17,6 +17,8 @@
 7. [Configuration validation](#config)
 8. [Teardown Deployment](#teardown)
 
+    ![](images/WebApp-with-AppGW.png) 
+
 <a name="objectives"></a>
 # Objective of the POC 
 This playbook demonstrates SQL injection attack against an unprotected sample web application.  After simulating an attack, harden the resources by applying protections to the web and SQL layers.  Re-attempt the attack against the protected application to see the defense in action.
