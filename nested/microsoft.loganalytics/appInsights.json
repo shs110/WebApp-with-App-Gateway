@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appInsightsName": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "appInsightsForWebApp",
+      "metadata": {
+        "description": "Describes the name of the Application Insights resource"
+      }
+    },
+    "applicationType": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "Web",
+      "metadata": {
+        "description": "Describes the type of the Application Insights resource"
+      }
+    },
+    "location": {
+      "type": "string",
+      "minLength": 1,
+      "defaultValue": "Australia East",
+      "allowedValues": [
+        "East US",
+        "North Europe",
+        "South Central US",
+        "Southeast Asia",
+        "West Europe",
+        "West US 2",
+        "Australia East"
+      ],
+      "metadata": {
+        "description": "Describes the name of the Application Insights resource"
+      }
+    }
+  },
+  "variables": {
+    
+  },
+  "resources": [
+    {
+    "name": "[parameters('appInsightsName')]",
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2015-05-01",
+    "location": "[parameters('location')]",
+      "properties": {
+      "Application_Type": "[parameters('applicationType')]"
+      }
+    }
+    
+  ],
+  "outputs": {
+    
+  }
+}
