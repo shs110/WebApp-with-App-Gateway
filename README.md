@@ -9,8 +9,8 @@
 
 # Table of Contents
 1. [Objectives](#objectives)
-2. [Design Decision](#design decision)
-3. [Suggested Improvements](#suggested improvements)
+2. [Design Decision](#designdecision)
+3. [Suggested Improvements](#suggestedimprovements)
 4. [Overview](#overview)
 5. [Pre-requisites](#prerequisites)
 6. [Perform Attack](#attack)
@@ -35,7 +35,7 @@ This project deploys the following Azure resources:
 
 This playbook also demonstrates an SQL injection attack against an unprotected sample web application.  After simulating an attack, harden the resources by applying protections to the web and SQL layers.  Re-attempt the attack against the protected application to see the defense in action.
 
-<a name="design decision"></a>
+<a name="designdecision"></a>
 # Design Decision
 
 Given the time constraints, I designed the architecture for a basic web application that fetches patient data stored in a database. I added a few components that reflects best cloud design principles but a lot more components could definitely be added for higher scalibility and availibility(see next section):
@@ -46,7 +46,7 @@ Given the time constraints, I designed the architecture for a basic web applicat
 
 * Application Insights/Log Analytics Workspace: App Insights can effectively monitor the health and performance of your application as well as troubleshoot potential failures. Log analytics is automatically connected to the App service, database and App gateway to log and query traffic. In this case, we will run a query to detect SQL injection attacks  
 
-<a name="suggested improvements"></a>
+<a name="suggestedimprovements"></a>
 # Suggested Improvements
 
 Given more time, I would have added the following components for higher scalibility and availibility:
