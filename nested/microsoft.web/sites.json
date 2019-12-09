@@ -27,6 +27,7 @@
       "tags": {
         "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms',parameters('hostingPlanName')))]": "empty"
       },
+      "appInsightsRG":"[resourceGroup().name]",
       "combinedTags": "[union(parameters('tags'),variables('tags'))]"
     },
     "resources": [
@@ -43,7 +44,7 @@
           "appSettings": [
             {
               "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
-            "value": "[reference(resourceId('microsoft.insights/components', parameters('appInsightsName')), '2015-05-01').InstrumentationKey]"
+            "value": "[reference(resourceId(variables('appInsightsRG'), 'microsoft.insights/components', parameters('appInsightsName')), '2015-05-01').InstrumentationKey]"
             }],
           "name": "[parameters('name')]",
           "serverFarmId": "[resourceId('Microsoft.Web/serverfarms',parameters('hostingPlanName'))]",
