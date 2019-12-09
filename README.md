@@ -9,13 +9,14 @@
 
 # Table of Contents
 1. [Objectives](#objectives)
-2. [Overview](#overview)
-3. [Pre-requisites](#prerequisites)
-4. [Perform Attack](#attack)
-5. [Detect Attack](#detect)
-6. [Respond/Mitigate](#mitigate)
-7. [Configuration validation](#config)
-8. [Teardown Deployment](#teardown)
+2. [Design Decision](#design decision)
+3. [Suggested Improvements](#suggested improvements)
+4. [Overview](#overview)
+5. [Pre-requisites](#prerequisites)
+6. [Perform Attack](#attack)
+7. [Detect Attack](#detect)
+8. [Respond/Mitigate](#mitigate)
+9. [Teardown Deployment](#teardown)
 
     ![](images/WebApp-with-AppGW.png) 
 
@@ -39,13 +40,13 @@ This playbook also demonstrates an SQL injection attack against an unprotected s
 
 Given the time constraints, I designed the architecture for a basic web application that fetches patient data stored in a database. I added a few components that reflects best cloud design principles but a lot more components could definitely be added for higher scalibility and availibility(see next section):
 
-*Application Gateway: A layer 7 web traffic load balancer that enables you to manage traffic to your web applications. With Application Gateway, you can make routing decisions based on additional attributes of an HTTP request, such as URI path or host headers.
+* Application Gateway: A layer 7 web traffic load balancer that enables you to manage traffic to your web applications. With Application Gateway, you can make routing decisions based on additional attributes of an HTTP request, such as URI path or host headers.
 
-*App service plan/App services: A quick and easy PAAS offering to host your website. I automated deployment of the site in the ARM template by referring to the packaged zip solution file under artifacts
+* App service plan/App services: A quick and easy PAAS offering to host your website. I automated deployment of the site in the ARM template by referring to the packaged zip solution file under artifacts
 
-*Application Insights/Log Analytics Workspace: App Insights can effectively monitor the health and performance of your application as well as troubleshoot potential failures. Log analytics is automatically connected to the App service, database and App gateway to log and query traffic. In this case, we will run a query to detect SQL injection attacks  
+* Application Insights/Log Analytics Workspace: App Insights can effectively monitor the health and performance of your application as well as troubleshoot potential failures. Log analytics is automatically connected to the App service, database and App gateway to log and query traffic. In this case, we will run a query to detect SQL injection attacks  
 
-<a name="design decision"></a>
+<a name="suggested improvements"></a>
 # Suggested Improvements
 
 Given more time, I would have added the following components for higher scalibility and availibility:
@@ -54,7 +55,7 @@ Given more time, I would have added the following components for higher scalibil
 
 ** Cache: Store semi-static data in Azure Cache for Redis.
 
-** CDN. Use Azure Content Delivery Network (CDN) to cache publicly available content for lower latency and faster delivery of content.
+** CDN: Use Azure Content Delivery Network (CDN) to cache publicly available content for lower latency and faster delivery of content.
 
 
 <a name="overview"></a>
