@@ -33,6 +33,8 @@ This project deploys the following Azure resources:
 * SQL Database 
 * Log Analytics Workspace
 
+Simply click on the *Deploy to Azure* button and log into your Azure subscription to deploy the solution.
+
 This playbook also demonstrates an SQL injection attack against an unprotected sample web application.  After simulating an attack, harden the resources by applying protections to the web and SQL layers.  Re-attempt the attack against the protected application to see the defense in action.
 
 <a name="designdecision"></a>
