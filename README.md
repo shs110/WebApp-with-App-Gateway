@@ -59,7 +59,7 @@ Given more time, I would have added the following components for higher scalibil
 
 **CDN: Use Azure Content Delivery Network (CDN) to cache publicly available content for lower latency and faster delivery of content.**
 
-**Queue: The application can queue background tasks by putting a message onto an Azure Queue storage queue. The message triggers a function app. Alternatively, you can use Service Bus queues. 
+**Queue: The application can queue background tasks by putting a message onto an Azure Queue storage queue. The message triggers a function app. Alternatively, you can use Service Bus queues.** 
 
 **Function App. Use Function Apps to run background tasks. Functions are invoked by a trigger, such as a timer event or a message being placed on queue. For long-running stateful tasks, use Durable Functions.**
 
