@@ -21,11 +21,32 @@
 
 <a name="objectives"></a>
 # Objective of the POC 
-This playbook demonstrates SQL injection attack against an unprotected sample web application.  After simulating an attack, harden the resources by applying protections to the web and SQL layers.  Re-attempt the attack against the protected application to see the defense in action.
+This project deploys the following Azure resources:
 
+* Application gateway (WAF enabled)
+* Application gateway (WAF disabled)
+* App service plan
+* App Service (Web App)
+* Application Insights
+* SQL Server
+* SQL Database 
+* Log Analytics Workspace
+
+This playbook also demonstrates an SQL injection attack against an unprotected sample web application.  After simulating an attack, harden the resources by applying protections to the web and SQL layers.  Re-attempt the attack against the protected application to see the defense in action.
+
+<a name="design decision"></a>
+# Design Decision
+
+Given the time constraints, I designed the architecture for a basic web application that fetches patient data stored in a database. I added a few components that reflects best cloud design principles but a lot more components could definitely be added for higher scalibility and availibility(see next section):
+
+*Application Gateway: A layer 7 web traffic load balancer that enables you to manage traffic to your web applications. With Application Gateway, you can make routing decisions based on additional attributes of an HTTP request, such as URI path or host headers.
+
+*App service plan/App services: A quick and easy PAAS offering to host your website. I automated deployment of the site in the ARM template by referring to the packaged zip solution file under artifacts
+
+*Application Insights/Log Analytics Workspace: App Insights can effectively monitor the health and performance of your application as well as troubleshoot potential failures. Log analytics is automatically connected to the App service, database and App gateway to log and query traffic. In this case, we will run a query to detect SQL injection attacks  
 
 <a name="overview"></a>
-# Overview
+# SQL Attack Overview
 It showcases following use cases
 1. Perform SQL injection attack on Web App with following configuration --> Application detects attack using application gateway
     * Application Gateway (WAF enabled-Detection mode)
@@ -42,7 +63,7 @@ It showcases following use cases
 
 
 # Important Notes <a name="notes"></a>
-Although the deployment takes 10-15mins, the log aggregation by OMS take a few hours to get configured in the backend. You may not see attack/mitigation logs for detection and prevention events during the aggregation time window.   
+Although the deployment takes 20-25mins, the log aggregation by OMS take a few hours to get configured in the backend. You may not see attack/mitigation logs for detection and prevention events during the aggregation time window.   
 Subsequently logs will take 10-15 mins to reflect in OMS.
 
 
@@ -52,7 +73,7 @@ Access to Azure subscription to deploy following resources
 1. Application gateway (WAF enabled)
 2. App Service (Web App)
 3. SQL Database 
-4. OMS (Monitoring)
+4. Log Analytics Workspace
 
 <a name="attack"></a>
 # Perform Attack 
