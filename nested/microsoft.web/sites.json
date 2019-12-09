@@ -2,65 +2,66 @@
     "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-      "name": {
-        "type": "string"
-      },
-      "hostingPlanName": {
-        "type": "string"
-      },
-      "appInsightsKey": {
-        "type": "string"
-      },
-      "location": {
-        "type": "string"
-      },
-      
-       "hostingEnvironment": {
-        "type": "string",
-        "defaultValue": ""
-      },
-      "tags": {
-        "type": "object"
-      }
+        "name": {
+            "type": "String"
+        },
+        "hostingPlanName": {
+            "type": "String"
+        },
+        "appInsightsKey": {
+            "type": "String"
+        },
+        "location": {
+            "type": "String"
+        },
+        "hostingEnvironment": {
+            "defaultValue": "",
+            "type": "String"
+        },
+        "tags": {
+            "type": "Object"
+        }
     },
     "variables": {
-      "tags": {
-        "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms',parameters('hostingPlanName')))]": "empty"
-      },
-      "combinedTags": "[union(parameters('tags'),variables('tags'))]"
+        "tags": {
+            "[concat('hidden-related:', resourceId('Microsoft.Web/serverfarms',parameters('hostingPlanName')))]": "empty"
+        },
+        "combinedTags": "[union(parameters('tags'),variables('tags'))]"
     },
     "resources": [
-      {
-        "apiVersion": "2018-02-01",
-        "name": "[parameters('name')]",
-        "type": "Microsoft.Web/sites",
-        "tags": "[variables('combinedTags')]",
-        "identity": {
-          "type": "SystemAssigned"
-        },
-        "properties": {
-          "siteConfig": {
-          "appSettings": [
-            {
-              "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
-            "value": "[parameters('appInsightsKey')]"
-            }],
-          "name": "[parameters('name')]",
-          "serverFarmId": "[resourceId('Microsoft.Web/serverfarms',parameters('hostingPlanName'))]",
-          "hostingEnvironment": "[parameters('hostingEnvironment')]"
-        },
-        "location": "[parameters('location')]"
-      }
-      }
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2018-02-01",
+            "name": "[parameters('name')]",
+            "location": "[parameters('location')]",
+            "tags": "[variables('combinedTags')]",
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+                            "value": "[parameters('appInsightsKey')]"
+                        }
+                    ],
+                    "name": "[parameters('name')]",
+                    "serverFarmId": "[resourceId('Microsoft.Web/serverfarms',parameters('hostingPlanName'))]",
+                    "hostingEnvironment": "[parameters('hostingEnvironment')]"
+                },
+                "location": "[parameters('location')]"
+            }
+        }
     ],
     "outputs": {
-      "principalId": {
-        "type": "string",
-        "value": "[reference(resourceId('Microsoft.Web/sites', parameters('name')), '2018-02-01', 'Full').identity.principalId]"
-      },
-      "endpoint": {
-        "type": "string",
-        "value": "[concat(parameters('name'),'.azurewebsites.net')]"
-      }
+        "principalId": {
+            "type": "String",
+            "value": "[reference(resourceId('Microsoft.Web/sites', parameters('name')), '2018-02-01', 'Full').identity.principalId]"
+        },
+        "endpoint": {
+            "type": "String",
+            "value": "[concat(parameters('name'),'.azurewebsites.net')]"
+        }
     }
-  }
+}
