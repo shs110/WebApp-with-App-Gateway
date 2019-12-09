@@ -437,7 +437,8 @@
       "name": "[concat(variables('webAppName'),'-resource')]",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
-        "[concat(variables('aspName'),'-resource')]"
+        "[concat(variables('aspName'),'-resource')]",
+        "deploy-sql-injection-app-insights"
       ],
       "properties": {
         "mode": "Incremental",
@@ -447,6 +448,9 @@
         "parameters": {
           "name": {
             "value": "[variables('webAppName')]"
+          },
+          "appInsightsKey":{
+            "value": "[reference('deploy-sql-injection-app-insights').outputs.key.value]"
           },
           "hostingPlanName": {
             "value": "[variables('aspName')]"
